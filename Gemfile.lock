@@ -16,6 +16,7 @@ GEM
     concurrent-ruby (1.1.4)
     i18n (1.5.2)
       concurrent-ruby (~> 1.0)
+    json (2.1.0)
     minitest (5.11.3)
     mustermann (1.0.3)
     rack (2.0.6)
@@ -42,6 +43,8 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord
+  bundler
+  json
   rake
   require_all
   sinatra-activerecord
