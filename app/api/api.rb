@@ -7,9 +7,9 @@ class Api
   def self.search
     json = JSON.parse(File.read('api/search.json'))
     json["restaurants"].each do |restaurant_obj|
-      self.create_restaurant(restaurant_obj)
+      self.create_restaurant(restaurant_obj["restaurant"])
     end
-    binding.pry
+    puts "#{Restaurant.all}"
   end
 
   def self.create_restaurant(restaurant_obj)
@@ -27,10 +27,10 @@ class Api
     restaurant_hash[:votes] = restaurant_obj["user_rating"]["votes"]
     # restaurant_hash[:phone_number]
 
-    restaurant = Restaurant.new(restaurant_hash)
+    restaurant = Restaurant.create(restaurant_hash)
 
-    location = Location.find_or_create_by(name: restaurant_obj["location"]["locality"])
-    restaurant.location = location
+    # location = Location.find_or_create_by(name: restaurant_obj["location"]["locality"])
+    # restaurant.location = location
 
     restaurant.save
   end
