@@ -5,11 +5,9 @@ class Api
   # result = NET::HTTP.get(URI.parse(""))
 
   def self.search
-    json = JSON.parse(File.read('../../api/search.json'))
-    file = File.read('api/search.json')
-    json = JSON.parse(file)
-    json[:restaurants].each do |restaurant_obj|
-      parse_restaurant(restaurant_obj)
+    json = JSON.parse(File.read('api/search.json'))
+    json["restaurants"].each do |restaurant_obj|
+      self.create_restaurant(restaurant_obj)
     end
     binding.pry
   end
