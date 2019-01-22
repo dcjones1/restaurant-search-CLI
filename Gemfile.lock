@@ -22,6 +22,7 @@ GEM
     rack-protection (2.0.5)
       rack
     rake (12.3.2)
+    require_all (2.0.0)
     sinatra (2.0.5)
       mustermann (~> 1.0)
       rack (~> 2.0)
@@ -42,8 +43,9 @@ PLATFORMS
 DEPENDENCIES
   activerecord
   rake
+  require_all
   sinatra-activerecord
   sqlite3
 
 BUNDLED WITH
-   1.17.2
+   2.0.1

@@ -3,6 +3,7 @@ Bundler.require
 
 require 'rake'
 require 'sinatra/activerecord'
+require 'require_all'
 
 DBNAME = "restaurant_search"
 
