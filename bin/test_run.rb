@@ -1,3 +1,4 @@
 require_relative '../config/environment.rb'
 
-Api.search_restaurants
+
+pearl = Restaurant.find_by(name: "Little Pearl")
