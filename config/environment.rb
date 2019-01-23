@@ -2,19 +2,18 @@ require 'bundler/setup'
 Bundler.require
 
 require 'rake'
-require 'active_record'
-require 'yaml/store'
-require 'ostruct'
-require 'date'
+require 'sinatra/activerecord'
+require 'require_all'
 
-DBNAME = "halloween"
+require_relative '../app/models/category_restaurants.rb'
+require_relative '../app/models/category.rb'
+require_relative '../app/models/location.rb'
+require_relative '../app/models/restaurant.rb'
+require_relative '../app/models/review.rb'
+require_relative '../app/api/api.rb'
 
-Dir[File.join(File.dirname(__FILE__), "../app/models", "*.rb")].each {|f| require f}
-Dir[File.join(File.dirname(__FILE__), "../lib/support", "*.rb")].each {|f| require f}
+DBNAME = "restaurant_search"
 
-DBRegistry[ENV["ACTIVE_RECORD_ENV"]].connect!
-DB = ActiveRecord::Base.connection
+# Dir[File.join(File.dirname(__FILE__), "../app/models", "*.rb")].each {|f| require f}
 
-if ENV["ACTIVE_RECORD_ENV"] == "test"
-  ActiveRecord::Migration.verbose = false
-end
+require_relative './databaseconfig.rb'

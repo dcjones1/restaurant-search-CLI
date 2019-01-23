@@ -1,0 +1,16 @@
+{
+  "location_suggestions": [{
+    "entity_type": "city",
+    "entity_id": 787,
+    "title": "Baltimore, Maryland",
+    "latitude": 39.290482,
+    "longitude": -76.61232,
+    "city_id": 787,
+    "city_name": "Baltimore",
+    "country_id": 216,
+    "country_name": "United States"
+  }],
+  "status": "success",
+  "has_more": 0,
+  "has_total": 0
+}
