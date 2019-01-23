@@ -7,5 +7,8 @@ gem "sinatra-activerecord"
 gem 'require_all'
 gem 'json'
 
+gem 'rspec'
+gem 'database_cleaner'
+
 gem 'pry'
 gem 'pry-rescue'
