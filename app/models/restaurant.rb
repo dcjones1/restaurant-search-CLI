@@ -33,8 +33,12 @@ class Restaurant < ActiveRecord::Base
   end
 
   def earliest_review
-    # find earliest review, based on timestamp
-    # used to determine restaurant age
+    self.reviews.min_by(&:timestamp)
+  end
+
+  def earliest_review_date
+    # used to approximate restaurant age
+    self.earliest_review.date
   end
 
   def aggregate_rating
