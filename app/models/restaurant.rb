@@ -38,8 +38,14 @@ class Restaurant < ActiveRecord::Base
   end
 
   def aggregate_rating
-    # separate from average rating
-    # incorporates review ratings & vote count
+    begin
+      rating = self.avg_rating / self.votes
+    rescue ZeroDivisionError
+      rating = 0
+    end
+
+    rating = 0 if rating.nan?
+    return rating
   end
 
   def nearby_restaurants
