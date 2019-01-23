@@ -11,6 +11,7 @@ require_relative '../app/models/location.rb'
 require_relative '../app/models/restaurant.rb'
 require_relative '../app/models/review.rb'
 require_relative '../app/api/api.rb'
+require_relative '../app/helpers/helper.rb'
 
 DBNAME = "restaurant_search"
 

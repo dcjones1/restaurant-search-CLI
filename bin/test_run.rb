@@ -1,4 +1,3 @@
 require_relative '../config/environment.rb'
 
-Api.search_restaurants
-puts Restaurant.all
+puts distance_between(77, 1, 78, 2)
