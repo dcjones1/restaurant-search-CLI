@@ -1,5 +1,5 @@
 require 'active_record'
-require './config/environment'
+require './config/databaseconfig.rb'
 require 'sinatra/activerecord/rake'
 
 # task :environment do
