@@ -4,12 +4,11 @@ require 'json'
 class Api
   # result = NET::HTTP.get(URI.parse(""))
 
-  def self.search
+  def self.search_restaurants
     json = JSON.parse(File.read('api/search.json'))
     json["restaurants"].each do |restaurant_obj|
       self.create_restaurant(restaurant_obj["restaurant"])
     end
-    puts "#{Restaurant.all}"
   end
 
   def self.create_restaurant(restaurant_obj)
@@ -25,14 +24,12 @@ class Api
     restaurant_hash[:price_range] = restaurant_obj["price_range"]
     restaurant_hash[:avg_rating] = restaurant_obj["user_rating"]["aggregate_rating"]
     restaurant_hash[:votes] = restaurant_obj["user_rating"]["votes"]
-    # restaurant_hash[:phone_number]
 
-    restaurant = Restaurant.create(restaurant_hash)
+    restaurant = Restaurant.find_or_create_by(restaurant_hash)
 
-    # location = Location.find_or_create_by(name: restaurant_obj["location"]["locality"])
-    # restaurant.location = location
+    location = Location.find_or_create_by(title: restaurant_obj["location"]["locality"])
+    restaurant.location = location
 
     restaurant.save
   end
 end
-Api.search

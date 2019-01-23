@@ -1,3 +1,3 @@
 require_relative '../config/environment.rb'
 
-Api.search
+Api.search_restaurants
