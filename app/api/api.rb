@@ -1,4 +1,5 @@
 require 'json'
+require_relative '../api_key.rb'
 
 class Api
   # result = NET::HTTP.get(URI.parse(""))
@@ -9,7 +10,7 @@ class Api
       uri = URI.parse(url)
       request = Net::HTTP::Get.new(uri)
       request["Accept"] = "application/json"
-      request["User-Key"] = "9daaa0c13ba2bd8f5234edfba454204d"
+      request["User-Key"] = API_KEY
 
       req_options = {
         use_ssl: uri.scheme == "https",
