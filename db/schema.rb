@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 5) do
+ActiveRecord::Schema.define(version: 2019_01_23_210426) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -38,10 +38,10 @@ ActiveRecord::Schema.define(version: 5) do
     t.string "address"
     t.float "latitude"
     t.float "longitude"
-    t.float "avg_cost_for_two"
+    t.float "avg_cost_for_two", default: 0.0
     t.integer "price_range"
-    t.float "avg_rating"
-    t.integer "votes"
+    t.float "avg_rating", default: 0.0
+    t.integer "votes", default: 0
     t.string "phone_number"
     t.integer "location_id"
   end

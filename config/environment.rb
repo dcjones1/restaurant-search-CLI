@@ -5,7 +5,7 @@ require 'rake'
 require 'sinatra/activerecord'
 require 'require_all'
 
-require_relative '../app/models/category_restaurants.rb'
+require_relative '../app/models/category_restaurant.rb'
 require_relative '../app/models/category.rb'
 require_relative '../app/models/location.rb'
 require_relative '../app/models/restaurant.rb'
