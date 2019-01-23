@@ -5,9 +5,15 @@ require 'rake'
 require 'sinatra/activerecord'
 require 'require_all'
 
+require_relative '../app/models/category_restaurants.rb'
+require_relative '../app/models/category.rb'
+require_relative '../app/models/location.rb'
+require_relative '../app/models/restaurant.rb'
+require_relative '../app/models/review.rb'
+require_relative '../app/api/api.rb'
+
 DBNAME = "restaurant_search"
 
-Dir[File.join(File.dirname(__FILE__), "../app/models", "*.rb")].each {|f| require f}
+# Dir[File.join(File.dirname(__FILE__), "../app/models", "*.rb")].each {|f| require f}
 
-connection_details = YAML::load(File.open('config/database.yml'))
-ActiveRecord::Base.establish_connection(connection_details)
+require_relative './databaseconfig.rb'
