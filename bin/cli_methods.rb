@@ -19,15 +19,14 @@ def average_cost(location)
   prompt = TTY::Prompt.new
   cost = prompt.ask("What's the maximum you'd like to pay?")
   restaurant_price = Restaurant.max_avg_cost(cost.to_i)
-  restaurant_location =restaurant_price.select {|rest| rest.location == location}
-  puts "#{restaurant_location.map(&:name)}"
+  restaurant_price.select {|rest| rest.location == location}
 end
 
 def find_restaurant
   prompt = TTY::Prompt.new
   name = prompt.ask("Please enter the name of the restaurant:")
-  restaurant = Restaurant.all.find_by(name: name)
-  puts "\n#{restaurant.name}\n#{restaurant.address}"
+  Restaurant.all.find_by(name: name)
+  # puts "\n#{restaurant.name}\n#{restaurant.address}"
 end
 
 def list_categories(location)
@@ -44,7 +43,7 @@ end
 def list_restaurants(restaurants)
   items = []
   restaurants.each do |restaurant|
-    items << {name: print_restaurant(restaurant), value: restaurant.id}
+    items << {name: restaurant.name, value: restaurant.id}
   end
 
   prompt = TTY::Prompt.new
@@ -52,13 +51,9 @@ def list_restaurants(restaurants)
   Restaurant.find(restaurant_id)
 end
 
-def print_restaurant(restaurant)
-  # return "#{restaurant.name} - #{restaurant.category.name} - #{restaurant.avg_rating}"
-  return restaurant.name
-end
-
 def show_restaurant(restaurant)
-  puts "Name: #{restaurant.name}"
+  puts "\nName: #{restaurant.name}"
   puts "Address: #{restaurant.address}"
   puts "URL: #{restaurant.url}"
+  puts "Average Rating: #{restaurant.avg_rating}"
 end

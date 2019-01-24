@@ -9,12 +9,12 @@ def runner(inputs = [])
   
     case input
     when 1
-      average_cost(location)
+      restaurants = average_cost(location)
     when 2
       category = list_categories(location)
       restaurants = location.restaurants_with_category(category)
     when 3
-      find_restaurant()
+      restaurant = find_restaurant()
     end
 
     if restaurants.any?
