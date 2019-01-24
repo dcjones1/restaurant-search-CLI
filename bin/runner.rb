@@ -1,15 +1,18 @@
 require_relative '../config/environment.rb'
 require_relative 'cli_methods.rb'
 
+require 'colorize'
+
 def runner(inputs = [])
   while true
     location = greeting
-    if location.downcase.starts_with?('x')
+    if location.nil? || location.downcase.starts_with?('x')
       puts "\n#{Location.all.map(&:title).join(", ")}\n\n"
     else
       location = Location.all.find do |locality|
         String::Similarity.levenshtein(locality.title, location) >= 0.3
       end
+
       if !location.nil?
         input = main_menu
 
@@ -42,6 +45,8 @@ def runner(inputs = [])
             break
           end
         end
+      else
+        puts "\nPlease enter a valid neighborhood".colorize(:yellow)
       end
     end
   end
