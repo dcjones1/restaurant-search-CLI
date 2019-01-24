@@ -29,4 +29,9 @@ describe Restaurant do
   it "finds nearby restaurants" do
     expect(one_dollar.nearby_restaurants(1)).to contain_exactly(two_dollar)
   end
+
+  it "fuzzy finds by name" do
+    expect(Restaurant.fuzzy_find("One")).to eq(one_dollar)
+    expect(Restaurant.fuzzy_find("two dllr")).to eq(two_dollar)
+  end
 end

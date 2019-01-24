@@ -1,8 +1,22 @@
+require 'string/similarity'
+
 class Restaurant < ActiveRecord::Base
   has_many :reviews
   has_many :category_restaurants
   has_many :categories, through: :category_restaurants
   belongs_to :location
+
+  def self.fuzzy_find(name)
+    Restaurant.all.find do |restaurant|
+      if String::Similarity.levenshtein(restaurant.name.downcase, name) >= 0.3
+        return restaurant
+      elsif restaurant.name.downcase.starts_with?(name)
+        return restaurant
+      elsif restaurant.name.downcase.ends_with?(name)
+        return restaurant
+      end
+    end
+  end
 
   def self.max_avg_cost(max)
     self.where('avg_cost_for_two <= ?', (max*2))
