@@ -1,5 +1,6 @@
 require_relative '../config/environment.rb'
 require_all 'app/models'
+require 'colorize'
 
 def greeting
   prompt = TTY::Prompt.new
@@ -51,8 +52,8 @@ def list_restaurants(restaurants)
 end
 
 def show_restaurant(restaurant)
-  puts "\nName: #{restaurant.name}"
-  puts "Address: #{restaurant.address}"
-  puts "URL: #{restaurant.url}"
-  puts "Average Rating: #{restaurant.avg_rating}"
+  puts "\nName: ".colorize(:blue) + "#{restaurant.name}"
+  puts "Address: ".colorize(:blue) + "#{restaurant.address}"
+  puts "Rating: ".colorize(:blue) + "#{restaurant.avg_rating}"
+  puts "URL: ".colorize(:blue) + "#{restaurant.url}"
 end
