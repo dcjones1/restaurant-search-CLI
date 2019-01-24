@@ -27,8 +27,7 @@ class Location < ActiveRecord::Base
     end
   end
 
-  def self.highly_rated(location = "Capitol Hill")
-    current_location = Location.find_by(title: "#{location}")
-    current_location.restaurants.order(avg_rating: :DESC).limit(5)
+  def highly_rated
+    self.restaurants.order(avg_rating: :DESC).limit(5)
   end
 end

@@ -4,15 +4,16 @@ require_relative 'cli_methods.rb'
 def runner(inputs = [])
   while true
     location = greeting
+    location = Location.find_by(title: location)
     input = main_menu
-
+    binding.pry
     case input
     when 1
-      list_nearby
+      #average cost
     when 2
-      list_highly_rated(location)
-    when 3
-      list_category
+      #category
+    when "Name"
+      
     end
 
     puts "\nDo you want to perform another search? (y/n)"
@@ -21,5 +22,6 @@ def runner(inputs = [])
     break if input.downcase.starts_with?('n')
   end
 end
+
 
 runner

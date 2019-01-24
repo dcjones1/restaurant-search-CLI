@@ -4,12 +4,6 @@ class Restaurant < ActiveRecord::Base
   has_many :categories, through: :category_restaurants
   belongs_to :location
 
-  def nearby_restaurants
-    # could use `/search` api for propery geolocation
-    # simple implementation could search by lat/long range
-    # e.g. abs(lat1 - lat2) <= 0.0001
-  end
-
   def self.max_avg_cost(max)
     self.where('avg_cost_for_two <= ?', (max*2))
   end

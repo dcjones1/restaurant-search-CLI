@@ -3,7 +3,7 @@ require_all 'app/models'
 
 def greeting
   prompt = TTY::Prompt.new
-  prompt.ask("Please enter a location (Either location name or press enter if none)")
+  prompt.ask("Please enter a location (Either neighborhood or press x for a list of neighborhoods)")
 end
 
 def main_menu(input = nil)
@@ -15,15 +15,15 @@ def main_menu(input = nil)
   end
 end
 
-def list_nearby
-  #....
+def list_nearby(location, mile_radius = 3)
+  restaurants = location.nearby_restaurants(mile_radius)
   restaurants.each do |restaurant|
     print_restaurant(restaurant)
   end
 end
 
 def list_highly_rated(location)
-  restaurants = Location.highly_rated(location)
+  restaurants = location.highly_rated
   restaurants.each do |restaurant|
     print_restaurant(restaurant)
   end
