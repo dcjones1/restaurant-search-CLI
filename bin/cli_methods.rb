@@ -11,11 +11,7 @@ def main_menu(input = nil)
   prompt.select("How would you like to search for a restaurant?") do |menu|
     menu.choice "Average Cost", 1
     menu.choice "Category", 2
-<<<<<<< HEAD
     menu.choice "Name", 3
-=======
-    menu.choice "Name"
->>>>>>> add select by category
   end
 end
 
