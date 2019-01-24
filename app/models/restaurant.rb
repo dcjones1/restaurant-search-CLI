@@ -8,7 +8,13 @@ class Restaurant < ActiveRecord::Base
 
   def self.fuzzy_find(name)
     Restaurant.all.find do |restaurant|
-      String::Similarity.levenshtein(restaurant.name.downcase, name) >= 0.3
+      if String::Similarity.levenshtein(restaurant.name.downcase, name) >= 0.3
+        return restaurant
+      elsif restaurant.name.downcase.starts_with?(name)
+        return restaurant
+      elsif restaurant.name.downcase.ends_with?(name)
+        return restaurant
+      end
     end
   end
 
