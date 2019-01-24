@@ -2,12 +2,11 @@ require 'json'
 require_relative '../api_key.rb'
 
 class Api
-  # change url_array to be values of 0,20,40,60,80 and insert that into the url instead of this abomination
-  @url_array = ["https://developers.zomato.com/api/v2.1/search?entity_type=city&q=Washington%2C%20DC&start=0", "https://developers.zomato.com/api/v2.1/search?entity_type=city&q=Washington%2C%20DC&start=20", "https://developers.zomato.com/api/v2.1/search?entity_type=city&q=Washington%2C%20DC&start=40", "https://developers.zomato.com/api/v2.1/search?entity_type=city&q=Washington%2C%20DC&start=60", "https://developers.zomato.com/api/v2.1/search?entity_type=city&q=Washington%2C%20DC&start=80"]
+  @url_array = [0, 20, 40, 60, 80]
 
   def self.search_restaurants
     @url_array.each do |url|
-      uri = URI.parse(url)
+      uri = URI.parse("https://developers.zomato.com/api/v2.1/search?entity_type=city&q=Washington%2C%20DC&start=#{url}")
       request = Net::HTTP::Get.new(uri)
       request["Accept"] = "application/json"
       request["User-Key"] = API_KEY
@@ -93,3 +92,9 @@ class Api
     review.save
   end
 end
+
+
+
+
+
+# ["https://developers.zomato.com/api/v2.1/search?entity_type=city&q=Washington%2C%20DC&start=0", "https://developers.zomato.com/api/v2.1/search?entity_type=city&q=Washington%2C%20DC&start=20", "https://developers.zomato.com/api/v2.1/search?entity_type=city&q=Washington%2C%20DC&start=40", "https://developers.zomato.com/api/v2.1/search?entity_type=city&q=Washington%2C%20DC&start=60", "https://developers.zomato.com/api/v2.1/search?entity_type=city&q=Washington%2C%20DC&start=80"]

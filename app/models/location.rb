@@ -26,4 +26,9 @@ class Location < ActiveRecord::Base
       location != self && distance <= mile_radius
     end
   end
+
+  def self.highly_rated(location = "Capitol Hill")
+    current_location = Location.find_by(title: "#{location}")
+    current_location.restaurants.order(avg_rating: :DESC).limit(5)
+  end
 end
