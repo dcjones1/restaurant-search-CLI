@@ -23,12 +23,24 @@ def runner(inputs = [])
 
     if restaurant
       show_restaurant(restaurant)
+      input = restaurant_menu
+
+      case input
+      when 1
+        # open_restaurant(restaurant)
+      when 2
+        # nearby
+      when 3
+        # main_menu
+      when 4
+        break
+      end
     end
 
-    puts "\nDo you want to perform another search? (y/n)"
+    # puts "\nDo you want to perform another search? (y/n)"
 
-    input = inputs.shift || gets.chomp
-    break if input.downcase.starts_with?('n')
+    # input = inputs.shift || gets.chomp
+    # break if input.downcase.starts_with?('n')
   end
 end
 

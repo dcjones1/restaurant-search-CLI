@@ -16,6 +16,16 @@ def main_menu(input = nil)
   end
 end
 
+def restaurant_menu
+  prompt = TTY::Prompt.new
+  prompt.select("What would you like to do now?") do |menu|
+    menu.choice "Open Website", 1
+    menu.choice "Find Nearby Restaurants", 2
+    menu.choice "Main Menu", 3
+    menu.choice "Exit", 4
+  end
+end
+
 def average_cost(location)
   prompt = TTY::Prompt.new
   cost = prompt.ask("What's the maximum you'd like to pay?")
@@ -55,5 +65,5 @@ def show_restaurant(restaurant)
   puts "\nName: ".colorize(:blue) + "#{restaurant.name}"
   puts "Address: ".colorize(:blue) + "#{restaurant.address}"
   puts "Rating: ".colorize(:blue) + "#{restaurant.avg_rating}"
-  puts "URL: ".colorize(:blue) + "#{restaurant.url}"
+  puts "URL: ".colorize(:blue) + "#{restaurant.url}\n"
 end
