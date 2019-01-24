@@ -54,6 +54,14 @@ class Restaurant < ActiveRecord::Base
 
   def nearby_restaurants(mile_radius)
     Restaurant.all.select do |restaurant|
+      if self == restaurant
+        next
+      elsif self.latitude.nil? || self.longitude.nil?
+        next
+      elsif restaurant.latitude.nil? || restaurant.longitude.nil?
+        next
+      end
+
       distance = distance_between(self.latitude, self.longitude, restaurant.latitude, restaurant.longitude)
       distance <= mile_radius
     end
