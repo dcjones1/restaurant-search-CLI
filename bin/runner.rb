@@ -27,7 +27,7 @@ def runner(inputs = [])
 
       case input
       when 1
-        # open_restaurant(restaurant)
+        open_restaurant(restaurant)
       when 2
         # nearby
       when 3

@@ -1,6 +1,8 @@
 require_relative '../config/environment.rb'
 require_all 'app/models'
+
 require 'colorize'
+require 'launchy'
 
 def greeting
   prompt = TTY::Prompt.new
@@ -66,4 +68,12 @@ def show_restaurant(restaurant)
   puts "Address: ".colorize(:blue) + "#{restaurant.address}"
   puts "Rating: ".colorize(:blue) + "#{restaurant.avg_rating}"
   puts "URL: ".colorize(:blue) + "#{restaurant.url}\n"
+end
+
+def open_restaurant(restaurant)
+  if restaurant.url.nil? || restaurant.url.empty?
+    puts "No URL exists for restaurant"
+  else
+    Launchy.open(restaurant.url)
+  end
 end
