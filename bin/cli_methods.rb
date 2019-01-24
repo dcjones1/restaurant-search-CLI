@@ -11,7 +11,11 @@ def main_menu(input = nil)
   prompt.select("How would you like to search for a restaurant?") do |menu|
     menu.choice "Average Cost", 1
     menu.choice "Category", 2
+<<<<<<< HEAD
     menu.choice "Name", 3
+=======
+    menu.choice "Name"
+>>>>>>> add select by category
   end
 end
 
@@ -30,8 +34,35 @@ def find_restaurant
   puts "\n#{restaurant.name}\n#{restaurant.address}"
 end
 
+def list_categories(location)
+  items = []
+  location.categories.uniq.each do |category|
+    items << {name: category.name, value: category.id}
+  end
+
+  prompt = TTY::Prompt.new
+  category_id = prompt.select("Please Select a Category", items, filter: true)
+  Category.find(category_id)
+end
+
+def list_restaurants(restaurants)
+  items = []
+  restaurants.each do |restaurant|
+    items << {name: print_restaurant(restaurant), value: restaurant.id}
+  end
+
+  prompt = TTY::Prompt.new
+  restaurant_id = prompt.select("Please Select a Restaurant", items, filter: true)
+  Restaurant.find(restaurant_id)
+end
+
 def print_restaurant(restaurant)
-  puts "* #{restaurant.name}"
-  restaurant.id
-  # puts "* #{restaurant_object}"
+  # return "#{restaurant.name} - #{restaurant.category.name} - #{restaurant.avg_rating}"
+  return restaurant.name
+end
+
+def show_restaurant(restaurant)
+  puts "Name: #{restaurant.name}"
+  puts "Address: #{restaurant.address}"
+  puts "URL: #{restaurant.url}"
 end

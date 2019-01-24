@@ -1,5 +1,16 @@
 class Location < ActiveRecord::Base
   has_many :restaurants
+  has_many :categories, through: :restaurants
+
+  def category_names
+    self.categories.map(&:name).uniq
+  end
+
+  def restaurants_with_category(category)
+    self.restaurants.select do |restaurant|
+      restaurant.categories.include?(category)
+    end
+  end
 
   def nearby_restaurants(mile_radius)
     if self.latitude.nil? || self.longitude.nil?

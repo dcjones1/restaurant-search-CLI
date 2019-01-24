@@ -11,9 +11,18 @@ def runner(inputs = [])
     when 1
       average_cost(location)
     when 2
-      #category
+      category = list_categories(location)
+      restaurants = location.restaurants_with_category(category)
     when 3
       find_restaurant()
+    end
+
+    if restaurants.any?
+      restaurant = list_restaurants(restaurants)
+    end
+
+    if restaurant
+      show_restaurant(restaurant)
     end
 
     puts "\nDo you want to perform another search? (y/n)"
