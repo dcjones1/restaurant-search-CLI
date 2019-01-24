@@ -13,36 +13,18 @@ describe Restaurant do
     expect(aoba.name).to eq("Aoba") 
   end
   
-  it "filters max price range" do
-    expect(Restaurant.max_price_range(2)).to contain_exactly(one_dollar, two_dollar)
-  end
-
-  it "filters min price range" do
-    expect(Restaurant.min_price_range(3)).to contain_exactly(four_dollar)
-  end
-
-  it "filters within price range" do
-    expect(Restaurant.within_price_range(2, 3)).to contain_exactly(two_dollar)
-  end
-
   it "filters max average cost" do
-    expect(Restaurant.max_avg_cost(50)).to contain_exactly(one_dollar)
+    expect(Restaurant.max_avg_cost(25)).to contain_exactly(one_dollar)
     expect(Restaurant.max_avg_cost(1)).to be_empty
   end
 
   it "filters min average cost" do
-    expect(Restaurant.min_avg_cost(100)).to contain_exactly(three_dollar, four_dollar)
+    expect(Restaurant.min_avg_cost(50)).to contain_exactly(three_dollar, four_dollar)
   end
 
   it "filters within average cost range" do
-    expect(Restaurant.within_avg_cost(30, 140)).to contain_exactly(two_dollar, three_dollar)
+    expect(Restaurant.within_avg_cost(15, 70)).to contain_exactly(two_dollar, three_dollar)
   end
-
-  # it "calculates aggregate rating" do
-  #   expect(one_dollar.aggregate_rating).to eq(one_dollar.avg_rating/one_dollar.votes)
-  #   no_votes = Restaurant.create(name: "No Votes", location: dc)
-  #   expect(no_votes.aggregate_rating).to eq(0)
-  # end
 
   it "finds nearby restaurants" do
     expect(one_dollar.nearby_restaurants(1)).to contain_exactly(two_dollar)
