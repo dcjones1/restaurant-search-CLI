@@ -6,6 +6,7 @@ gem "rake"
 gem "sinatra-activerecord"
 gem 'require_all'
 gem 'json'
+gem 'string-similarity'
 
 gem 'rspec'
 gem 'database_cleaner'
