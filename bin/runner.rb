@@ -6,14 +6,14 @@ def runner(inputs = [])
     location = greeting
     location = Location.find_by(title: location)
     input = main_menu
-    binding.pry
+  
     case input
     when 1
-      #average cost
+      average_cost(location)
     when 2
       #category
-    when "Name"
-      
+    when 3
+      find_restaurant()
     end
 
     puts "\nDo you want to perform another search? (y/n)"
