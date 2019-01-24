@@ -12,3 +12,4 @@ gem 'database_cleaner'
 
 gem 'pry'
 gem 'pry-rescue'
+gem 'tty-prompt'
