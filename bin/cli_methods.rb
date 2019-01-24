@@ -25,8 +25,7 @@ end
 def find_restaurant
   prompt = TTY::Prompt.new
   name = prompt.ask("Please enter the name of the restaurant:")
-  Restaurant.all.find_by(name: name)
-  # puts "\n#{restaurant.name}\n#{restaurant.address}"
+  Restaurant.fuzzy_find(name)
 end
 
 def list_categories(location)
