@@ -52,9 +52,10 @@ class Restaurant < ActiveRecord::Base
     return rating
   end
 
-  def nearby_restaurants
-    # could use `/search` api for propery geolocation
-    # simple implementation could search by lat/long range
-    # e.g. abs(lat1 - lat2) <= 0.0001
+  def nearby_restaurants(mile_radius)
+    Restaurant.all.select do |restaurant|
+      distance = distance_between(self.latitude, self.longitude, restaurant.latitude, restaurant.longitude)
+      distance <= mile_radius
+    end
   end
 end

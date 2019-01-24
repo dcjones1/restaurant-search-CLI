@@ -3,8 +3,8 @@ require_relative 'spec_helper'
 describe Restaurant do
   let(:dc) { Location.create(title: "Washington D.C.", latitude: 0.0, longitude: 0.0, city_name: "Washington D.C.", city_id: 1, country_name: "US") }
 
-  let(:one_dollar) { Restaurant.create(name: "One Dollar", location: dc, price_range: 1, avg_cost_for_two: 20.0, avg_rating: 4.5, votes: 1329) }
-  let(:two_dollar) { Restaurant.create(name: "Two Dollar", location: dc, price_range: 2, avg_cost_for_two: 55.0, avg_rating: 2.3, votes: 284) }
+  let(:one_dollar) { Restaurant.create(name: "One Dollar", location: dc, price_range: 1, avg_cost_for_two: 20.0, avg_rating: 4.5, votes: 1329, latitude: 77, longitude: 1) }
+  let(:two_dollar) { Restaurant.create(name: "Two Dollar", location: dc, price_range: 2, avg_cost_for_two: 55.0, avg_rating: 2.3, votes: 284, latitude: 78, longitude: 1) }
   let(:three_dollar) { Restaurant.create(name: "Three Dollar", location: dc, price_range: 3, avg_cost_for_two: 100.0, avg_rating: 3.9, votes: 102) }
   let(:four_dollar) { Restaurant.create(name: "Two Dollar", location: dc, price_range: 4, avg_cost_for_two: 250.0, avg_rating: 4.2, votes: 858) }
 
@@ -41,7 +41,10 @@ describe Restaurant do
   it "calculates aggregate rating" do
     expect(one_dollar.aggregate_rating).to eq(one_dollar.avg_rating/one_dollar.votes)
     no_votes = Restaurant.create(name: "No Votes", location: dc)
-    # binding.pry
     expect(no_votes.aggregate_rating).to eq(0)
+  end
+
+  it "finds nearby restaurants" do
+    expect(one_dollar.nearby_restaurants(69)).to contain_exactly(two_dollar)
   end
 end
