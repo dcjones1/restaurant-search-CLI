@@ -43,7 +43,7 @@ class Restaurant < ActiveRecord::Base
     self.earliest_review.date
   end
 
-  def nearby_restaurants(mile_radius)
+  def nearby_restaurants(mile_radius = 1)
     Restaurant.all.select do |restaurant|
       if self == restaurant
         next

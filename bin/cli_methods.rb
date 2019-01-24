@@ -42,6 +42,8 @@ def find_restaurant
 end
 
 def list_categories(location)
+  return if location.categories.empty?
+
   items = []
   location.categories.uniq.each do |category|
     items << {name: category.name, value: category.id}
@@ -53,6 +55,8 @@ def list_categories(location)
 end
 
 def list_restaurants(restaurants)
+  return if restaurants.empty?
+
   items = []
   restaurants.each do |restaurant|
     items << {name: restaurant.name, value: restaurant.id}
@@ -67,7 +71,7 @@ def show_restaurant(restaurant)
   puts "\nName: ".colorize(:blue) + "#{restaurant.name}"
   puts "Address: ".colorize(:blue) + "#{restaurant.address}"
   puts "Rating: ".colorize(:blue) + "#{restaurant.avg_rating}"
-  puts "URL: ".colorize(:blue) + "#{restaurant.url}\n"
+  puts "URL: ".colorize(:blue) + "#{restaurant.url}\n\n"
 end
 
 def open_restaurant(restaurant)
