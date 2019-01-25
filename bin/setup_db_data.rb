@@ -1,4 +1,4 @@
 require_relative '../config/environment.rb'
 
-binding.pry
-puts "Hey"
+Api.search_restaurants
+Api.search_reviews
