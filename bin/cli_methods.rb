@@ -106,8 +106,16 @@ def call_restaurant(restaurant)
 end
 
 def see_reviews(restaurant)
-  restaurant.reviews.each do |review|
-    puts "#{review.rating}/5"
-    puts "#{review.rating_text}"
+  if restaurant.reviews.empty?
+    puts "No reviews for this restaurant."
+  else
+    restaurant.reviews.each do |review|
+      if review.rating > 2
+        puts "\n#{review.rating}/5".colorize(:green)
+      else
+        puts "\n#{review.rating}/5".colorize(:red)
+      end
+      puts "#{review.rating_text}\n\n"
+    end
   end
 end
