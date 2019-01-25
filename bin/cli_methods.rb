@@ -81,15 +81,8 @@ def show_restaurant(restaurant)
   puts "\nName: ".colorize(:blue) + "#{restaurant.name}"
   puts "Address: ".colorize(:blue) + "#{restaurant.address}"
   puts "Rating: ".colorize(:blue) + "#{restaurant.avg_rating}"
-
-  if restaurant.url
-    puts "URL: ".colorize(:blue) + "#{restaurant.url}"
-  end
-
-  if restaurant.phone_number
-    puts "Phone: ".colorize(:blue) + "#{restaurant.phone_number}" 
-  end
-
+  puts "URL: ".colorize(:blue) + "#{restaurant.url}"
+  puts "Phone: ".colorize(:blue) + "#{restaurant.phone_number}" 
   puts "\n"
 end
 
@@ -103,10 +96,10 @@ def open_restaurant(restaurant)
 end
 
 def call_restaurant(restaurant)
-  if restaurant.phone_number.nil?
+  if restaurant.phone_digits.nil?
     puts "No phone number found for restaurant"
   else
     puts "Calling: ".colorize(:blue) + "#{restaurant.phone_number}"
-    Launchy.open("tel://#{restaurant.phone_number}")
+    Launchy.open("tel://#{restaurant.phone_digits}")
   end
 end
