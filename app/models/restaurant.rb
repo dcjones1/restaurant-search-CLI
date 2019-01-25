@@ -57,4 +57,8 @@ class Restaurant < ActiveRecord::Base
       distance <= mile_radius
     end
   end
+
+  def phone_digits
+    self.phone_number.gsub(/[^0-9]/, '').to_i
+  end
 end
