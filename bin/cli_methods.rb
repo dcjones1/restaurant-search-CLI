@@ -90,7 +90,7 @@ def open_restaurant(restaurant)
   if restaurant.url.nil? || restaurant.url.empty?
     puts "No URL found for restaurant"
   else
-    puts "Opening: ".colorize(:blue) + "#{restaurant.url}"
+    puts "Opening: ".colorize(:blue) + "#{restaurant.url}\n"
     Launchy.open(restaurant.url)
   end
 end
@@ -99,7 +99,7 @@ def call_restaurant(restaurant)
   if restaurant.phone_digits.nil?
     puts "No phone number found for restaurant"
   else
-    puts "Calling: ".colorize(:blue) + "#{restaurant.phone_number}"
-    Launchy.open("tel://#{restaurant.phone_digits}")
+    puts "Calling: ".colorize(:blue) + "#{restaurant.phone_number}\n"
+    system("open tel://#{restaurant.phone_digits}")
   end
 end
