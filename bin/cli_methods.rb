@@ -22,9 +22,10 @@ def restaurant_menu
   prompt = TTY::Prompt.new
   prompt.select("What would you like to do now?") do |menu|
     menu.choice "Open Website", 1
-    menu.choice "Find Nearby Restaurants", 2
-    menu.choice "Main Menu", 3
-    menu.choice "Exit", 4
+    menu.choice "Call Restaurant", 2
+    menu.choice "Find Nearby Restaurants", 3
+    menu.choice "Main Menu", 4
+    menu.choice "Exit", 5
   end
 end
 
@@ -79,5 +80,13 @@ def open_restaurant(restaurant)
     puts "No URL exists for restaurant"
   else
     Launchy.open(restaurant.url)
+  end
+end
+
+def call_restaurant(restaurant)
+  if restaurant.phone_number.nil?
+    puts "No phone number exists for restaurant"
+  else
+    Launchy.open("tel://#{restaurant.phone_number}")
   end
 end

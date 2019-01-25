@@ -38,11 +38,26 @@ def runner(inputs = [])
           when 1
             open_restaurant(restaurant)
           when 2
-            restaurant = list_restaurants(restaurant.nearby_restaurants)
-            show_restaurant(restaurant) if restaurant
+            call_restaurant(restaurant)
           when 3
-            # main_menu
+            restaurant = list_restaurants(restaurant.nearby_restaurants)
+            
+            if restaurant.nil?   
+              restaurant = list_restaurants(restaurant.nearby_restaurants(3))
+            end
+
+            if restaurant.nil?   
+              restaurant = list_restaurants(restaurant.nearby_restaurants(5))
+            end
+
+            if restaurant.nil?   
+              restaurant = list_restaurants(restaurant.nearby_restaurants(10))
+            end
+
+            show_restaurant(restaurant) if restaurant
           when 4
+            # main_menu
+          when 5
             break
           end
         end
