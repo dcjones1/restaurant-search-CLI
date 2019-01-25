@@ -63,6 +63,10 @@ end
 def list_restaurants(restaurants)
   return if restaurants.empty?
 
+  # if restaurants.length == 1
+  #   return restaurants[0]
+  # end
+
   items = []
   restaurants.each do |restaurant|
     items << {name: restaurant.name, value: restaurant.id}
@@ -86,7 +90,7 @@ def show_restaurant(restaurant)
     puts "Phone: ".colorize(:blue) + "#{restaurant.phone_number}" 
   end
 
-  puts "\n\n"
+  puts "\n"
 end
 
 def open_restaurant(restaurant)
