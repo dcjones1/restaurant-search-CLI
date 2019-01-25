@@ -77,21 +77,32 @@ def show_restaurant(restaurant)
   puts "\nName: ".colorize(:blue) + "#{restaurant.name}"
   puts "Address: ".colorize(:blue) + "#{restaurant.address}"
   puts "Rating: ".colorize(:blue) + "#{restaurant.avg_rating}"
-  puts "URL: ".colorize(:blue) + "#{restaurant.url}\n\n"
+
+  if restaurant.url
+    puts "URL: ".colorize(:blue) + "#{restaurant.url}"
+  end
+
+  if restaurant.phone_number
+    puts "Phone: ".colorize(:blue) + "#{restaurant.phone_number}" 
+  end
+
+  puts "\n\n"
 end
 
 def open_restaurant(restaurant)
   if restaurant.url.nil? || restaurant.url.empty?
-    puts "No URL exists for restaurant"
+    puts "No URL found for restaurant"
   else
+    puts "Opening: ".colorize(:blue) + "#{restaurant.url}"
     Launchy.open(restaurant.url)
   end
 end
 
 def call_restaurant(restaurant)
   if restaurant.phone_number.nil?
-    puts "No phone number exists for restaurant"
+    puts "No phone number found for restaurant"
   else
+    puts "Calling: ".colorize(:blue) + "#{restaurant.phone_number}"
     Launchy.open("tel://#{restaurant.phone_number}")
   end
 end
