@@ -4,6 +4,11 @@ require_all 'app/models'
 require 'colorize'
 require 'launchy'
 
+def opener
+  a = Artii::Base.new :font => 'slant'
+  puts "#{a.asciify('Restaurant Search')}"
+end
+
 def greeting
   prompt = TTY::Prompt.new
   prompt.ask("Please enter a location: (Either neighborhood or press x for a list of neighborhoods)")
@@ -30,7 +35,7 @@ end
 
 def average_cost(location)
   prompt = TTY::Prompt.new
-  cost = prompt.ask("What's the maximum you'd like to pay?")
+  cost = prompt.ask("What's the maximum you'd like to pay per person?")
   restaurant_price = Restaurant.max_avg_cost(cost.to_i)
   restaurant_price.select {|rest| rest.location == location}
 end

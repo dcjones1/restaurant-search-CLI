@@ -2,8 +2,10 @@ require_relative '../config/environment.rb'
 require_relative 'cli_methods.rb'
 
 require 'colorize'
+require 'artii'
 
 def runner(inputs = [])
+  opener
   while true
     location = greeting
     if location.nil? || location.downcase.starts_with?('x')
