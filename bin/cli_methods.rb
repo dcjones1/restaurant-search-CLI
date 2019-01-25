@@ -6,12 +6,12 @@ require 'launchy'
 
 def opener
   a = Artii::Base.new :font => 'slant'
-  puts "#{a.asciify('Restaurant Search')}"
+  puts "#{a.asciify('DC Restaurant Search')}"
 end
 
 def greeting
   prompt = TTY::Prompt.new
-  prompt.ask("Please enter a location: (Either neighborhood or press x for a list of neighborhoods)")
+  prompt.ask("Please enter a DC neighborhood: (or press x for a list of neighborhoods)")
 end
 
 def main_menu(input = nil)
