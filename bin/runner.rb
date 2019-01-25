@@ -28,11 +28,13 @@ def runner(inputs = [])
           restaurant = find_restaurant()
         end
 
-        if restaurants.any?
+        if !restaurants.nil? && restaurants.any?
           restaurant = list_restaurants(restaurants)
         end
 
-        if restaurant
+        if restaurant.nil?
+          puts "\nNo restaurant found\n".colorize(:yellow)
+        else
           show_restaurant(restaurant)
           input = restaurant_menu
 
@@ -53,7 +55,7 @@ def runner(inputs = [])
             end
 
             if near_restaurant.nil?
-              puts "\nNo nearby restaurants found".colorize(:yellow)
+              puts "\nNo nearby restaurants found\n".colorize(:yellow)
             else
               show_restaurant(near_restaurant)
             end
