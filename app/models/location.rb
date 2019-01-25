@@ -2,6 +2,19 @@ class Location < ActiveRecord::Base
   has_many :restaurants
   has_many :categories, through: :restaurants
 
+  def fuzzy_find_restaurant(name)
+    self.restaurants.find do |restaurant|
+      # binding.pry
+      if String::Similarity.levenshtein(restaurant.name.downcase, name.downcase) >= 0.3
+        return restaurant
+      elsif restaurant.name.downcase.starts_with?(name.downcase)
+        return restaurant
+      elsif restaurant.name.downcase.ends_with?(name.downcase)
+        return restaurant
+      end
+    end
+  end
+
   def category_names
     self.categories.map(&:name).uniq
   end

@@ -25,7 +25,7 @@ def runner(inputs = [])
           category = list_categories(location)
           restaurants = location.restaurants_with_category(category)
         when 3
-          restaurant = find_restaurant()
+          restaurant = find_restaurant(location)
         end
 
         if !restaurants.nil? && restaurants.any?

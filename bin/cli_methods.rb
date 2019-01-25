@@ -41,10 +41,10 @@ def average_cost(location)
   restaurant_price.select {|rest| rest.location == location}
 end
 
-def find_restaurant
+def find_restaurant(location)
   prompt = TTY::Prompt.new(interrupt: :exit)
   name = prompt.ask("Please enter the name of the restaurant:")
-  Restaurant.fuzzy_find(name)
+  location.fuzzy_find_restaurant(name)
 end
 
 def list_categories(location)
