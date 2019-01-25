@@ -36,7 +36,7 @@ def restaurant_menu
 end
 
 def average_cost(location)
-  prompt = TTY::Prompt.ne(interrupt: :exit)
+  prompt = TTY::Prompt.new(interrupt: :exit)
   cost = prompt.ask("What's the maximum you'd like to pay per person?")
   restaurant_price = Restaurant.max_avg_cost(cost.to_i)
   restaurant_price.select {|rest| rest.location == location}
@@ -115,7 +115,7 @@ def see_reviews(restaurant)
       else
         puts "\n#{review.rating}/5".colorize(:red)
       end
-      puts "#{review.rating_text}\n\n"
+      puts "#{review.review_text}\n\n"
     end
   end
 end
