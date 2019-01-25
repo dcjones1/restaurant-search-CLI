@@ -28,9 +28,10 @@ def restaurant_menu
   prompt.select("What would you like to do now?") do |menu|
     menu.choice "Open Website", 1
     menu.choice "Call Restaurant", 2
-    menu.choice "Find Nearby Restaurants", 3
-    menu.choice "Main Menu", 4
-    menu.choice "Exit", 5
+    menu.choice "See Reviews", 3
+    menu.choice "Find Nearby Restaurants", 4
+    menu.choice "Main Menu", 5
+    menu.choice "Exit", 6
   end
 end
 
@@ -82,7 +83,7 @@ def show_restaurant(restaurant)
   puts "Address: ".colorize(:blue) + "#{restaurant.address}"
   puts "Rating: ".colorize(:blue) + "#{restaurant.avg_rating}"
   puts "URL: ".colorize(:blue) + "#{restaurant.url}"
-  puts "Phone: ".colorize(:blue) + "#{restaurant.phone_number}" 
+  puts "Phone: ".colorize(:blue) + "#{restaurant.phone_number}"
   puts "\n"
 end
 
@@ -101,5 +102,12 @@ def call_restaurant(restaurant)
   else
     puts "Calling: ".colorize(:blue) + "#{restaurant.phone_number}\n"
     system("open tel://#{restaurant.phone_digits}")
+  end
+end
+
+def see_reviews(restaurant)
+  restaurant.reviews.each do |review|
+    puts "#{review.rating}/5"
+    puts "#{review.rating_text}"
   end
 end
