@@ -3,10 +3,13 @@ require_relative '../api_key.rb'
 
 class Api
   @url_array = [0, 20, 40, 60, 80]
+  @url_array1 = [100, 120, 140, 160, 180]
+
+
 
   def self.search_restaurants
     @url_array.each do |url|
-      uri = URI.parse("https://developers.zomato.com/api/v2.1/search?entity_type=city&q=Washington%2C%20DC&start=#{url}")
+      uri = URI.parse("https://developers.zomato.com/api/v2.1/search?q=Washington%2C%20DC&start=#{url}")
       request = Net::HTTP::Get.new(uri)
       request["Accept"] = "application/json"
       request["User-Key"] = API_KEY
