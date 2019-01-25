@@ -10,12 +10,12 @@ def opener
 end
 
 def greeting
-  prompt = TTY::Prompt.new
+  prompt = TTY::Prompt.new(interrupt: :exit)
   prompt.ask("Please enter a DC neighborhood: (or press x for a list of neighborhoods)")
 end
 
 def main_menu(input = nil)
-  prompt = TTY::Prompt.new
+  prompt = TTY::Prompt.new(interrupt: :exit)
   prompt.select("How would you like to search for a restaurant?") do |menu|
     menu.choice "Average Cost", 1
     menu.choice "Category", 2
@@ -24,7 +24,7 @@ def main_menu(input = nil)
 end
 
 def restaurant_menu
-  prompt = TTY::Prompt.new
+  prompt = TTY::Prompt.new(interrupt: :exit)
   prompt.select("What would you like to do now?") do |menu|
     menu.choice "Open Website", 1
     menu.choice "Call Restaurant", 2
@@ -35,14 +35,14 @@ def restaurant_menu
 end
 
 def average_cost(location)
-  prompt = TTY::Prompt.new
+  prompt = TTY::Prompt.ne(interrupt: :exit)
   cost = prompt.ask("What's the maximum you'd like to pay per person?")
   restaurant_price = Restaurant.max_avg_cost(cost.to_i)
   restaurant_price.select {|rest| rest.location == location}
 end
 
 def find_restaurant
-  prompt = TTY::Prompt.new
+  prompt = TTY::Prompt.new(interrupt: :exit)
   name = prompt.ask("Please enter the name of the restaurant:")
   Restaurant.fuzzy_find(name)
 end
@@ -55,7 +55,7 @@ def list_categories(location)
     items << {name: category.name, value: category.id}
   end
 
-  prompt = TTY::Prompt.new
+  prompt = TTY::Prompt.new(interrupt: :exit)
   category_id = prompt.select("Please Select a Category", items, filter: true)
   Category.find(category_id)
 end
@@ -72,7 +72,7 @@ def list_restaurants(restaurants)
     items << {name: restaurant.name, value: restaurant.id}
   end
 
-  prompt = TTY::Prompt.new
+  prompt = TTY::Prompt.new(interrupt: :exit)
   restaurant_id = prompt.select("Please Select a Restaurant", items, filter: true)
   Restaurant.find(restaurant_id)
 end
